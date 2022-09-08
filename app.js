@@ -53,11 +53,11 @@ function startStopProgress() {
         progress = setInterval(progressTrack, speed);
     } else {
         clearInterval(progress)
+        audio.pause()
         progress = null
-        progressStart = 0
         progressBar.style.background = `conic-gradient(
-                #17171a 360deg,
-                #17171a 360deg
+                #f9966b  ${progressStart * degTravel}deg,
+                #17171a  ${progressStart * degTravel}deg
           )`
     }
 }
