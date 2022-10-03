@@ -26,6 +26,9 @@ body {
     min-height: 100vh;
     overflow: hidden;
 }
+.darkTheme{
+    --bg-grad:radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(70,70,166,1) 35%, rgba(0,212,255,1) 100%);
+}
 
 .container {
     height: 600px;
