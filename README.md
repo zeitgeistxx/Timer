@@ -1,4 +1,4 @@
-POMODORO TIMER
+## POMODORO TIMER
 
 This is a timer made using HTML,CSS and Javascript
 
