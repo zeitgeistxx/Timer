@@ -85,6 +85,9 @@ body {
     letter-spacing: 0.1em;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+#colon{
+    margin-top: 20px;
+}
 
 #start_stop {
     color: var(--font-clr);
@@ -100,11 +103,10 @@ body {
 
 #setting {
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 2rem;
     width: 25px;
     height: 25px;
-    color: #585858;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+    color: #8e8b8b;
 }
 
 #nav_theme {
