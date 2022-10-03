@@ -19,15 +19,17 @@
     --font-timer: "Bebas Neue", cursive;
     --font-stsp: "Montserrat", sans-serif;
     --font-clr: #ffffff;
-}
-
-body {
-    background: radial-gradient(black,rgb(254, 243, 243)); 
-    min-height: 100vh;
-    overflow: hidden;
+    --bg-grad:radial-gradient(black,rgb(254, 243, 243)); 
+    
 }
 .darkTheme{
     --bg-grad:radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(70,70,166,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+body {
+    background: var(--bg-grad);
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .container {
