@@ -107,11 +107,21 @@ body {
 }
 
 #setting {
+    background: none;
+    color: #8e8b8b;
     cursor: pointer;
+    border: none;
     margin-top: 2rem;
     width: 25px;
     height: 25px;
-    color: #8e8b8b;
+}
+
+#setting:hover:enabled{
+    color: #00aa51;
+}
+
+.fa-gears{
+    font-size: 18px;
 }
 
 #nav_theme {
@@ -126,4 +136,31 @@ body {
 #nav_theme:active {
     transform: scale(0.3);
     transition: all 300ms ease;
+}
+
+.error-msg{
+    position: absolute;
+    top: 9%;
+    right: 0;
+    padding: 30px;
+    cursor: default;
+    letter-spacing: 8px;
+    opacity: 0;
+    transition: opacity 1.1s ease-in;
+}
+
+p{
+    font-size: 1.3rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    transition: 1.3s ease-out;
+    
+}
+
+/* .error-msg-show{
+    opacity: 1;
+} */
+
+.error-msg-hide{
+    transform: translateY(100vh);
 }
