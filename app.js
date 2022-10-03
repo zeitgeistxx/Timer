@@ -2,7 +2,9 @@ const minEle = document.querySelector('#minutes'),
     secEle = document.querySelector('#seconds'),
     setting = document.querySelector('#setting'),
     startstop = document.querySelector('#start_stop'),
-    progressBar = document.querySelector('.outer_ring')
+    timer = document.querySelector('.timer'),
+    progressBar = document.querySelector('.outer_ring'),
+    error_msg = document.querySelector('.error-msg')
 
 let minutes = minEle.innerHTML,
     seconds = secEle.innerHTML,
@@ -47,28 +49,29 @@ function progressTrack() {
             #00aa51 360deg`
         clearInterval(progress)
         startstop.innerHTML = "START"
-        progress = null
-        progressStart = 0
 
         audio.pause()
         audio.currentTime = 0
-        
+
         timeEnd.play()
         timeEnd.loop = true
         setTimeout(StopTimeEndAudio, 8000)
         timeEnd.currentTime = 0
-    }
 
+        setTimeout(resetValues, 9000)
+    }
 }
 
 
 function startStopProgress() {
     if (!progress) {
-        progress = setInterval(progressTrack, speed);
+        progress = setInterval(progressTrack, speed)
+        setting.disabled = true
     } else {
         clearInterval(progress)
         audio.pause()
         progress = null
+        setting.disabled = true
         progressBar.style.background = `conic-gradient(
                 #f9966b  ${progressStart * degTravel}deg,
                 #17171a  ${progressStart * degTravel}deg
@@ -82,6 +85,7 @@ function resetValues() {
     }
     minutes = minEle.innerHTML
     seconds = secEle.innerHTML
+    setting.disabled = false
     toggleSettings = false
     minEle.contentEditable = false
     minEle.style.borderBottom = `none`
@@ -97,19 +101,26 @@ function resetValues() {
           )`
 }
 
+let pattern = /[0-9]/gi
 startstop.addEventListener('click', () => {
-    if (startstop.innerHTML == "START") {
-        if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-            startstop.innerHTML = "STOP"
-            startStopProgress()
-        } else {
-            alert("Please enter a time in Timer!")
+    // if (pattern.test(minEle.innerHTML) && pattern.test(secEle.innerHTML)) {
+        // timer.style.background = null
+        if (startstop.innerHTML == "START") {
+            if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+                startstop.innerHTML = "STOP"
+                startStopProgress()
+            } else {
+                alert("Please enter a time in Timer!")
+            }
         }
-    }
-    else {
-        startstop.innerHTML = "START"
-        startStopProgress()
-    }
+        else {
+            startstop.innerHTML = "START"
+            startStopProgress()
+        }
+    // }
+    // else {
+        // timer.style.background = '#ca3433'
+    // }
 })
 
 setting.onclick = function () {
