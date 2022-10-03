@@ -118,3 +118,7 @@ minEle.onblur = function () {
 secEle.onblur = function () {
     resetValues()
 }
+//theme button
+document.getElementById("nav_theme").addEventListener('click',function(){
+    document.body.classList.toggle("darkTheme");
+});
