@@ -2,8 +2,7 @@ const minEle = document.querySelector('#minutes'),
     secEle = document.querySelector('#seconds'),
     setting = document.querySelector('#setting'),
     startstop = document.querySelector('#start_stop'),
-    progressBar = document.querySelector('.outer_ring'),
-    audio = document.querySelector('#alarm')
+    progressBar = document.querySelector('.outer_ring')
 
 let minutes = minEle.innerHTML,
     seconds = secEle.innerHTML,
@@ -15,6 +14,13 @@ let minutes = minEle.innerHTML,
     toggleSettings = false,
     secRem = 0,
     minRem = 0
+
+const audio = new Audio('timer-bg-audio.mp3')
+const timeEnd = new Audio('time-end.mp3')
+
+function StopTimeEndAudio() {
+    timeEnd.pause()
+}
 
 function progressTrack() {
     progressStart++
@@ -30,8 +36,9 @@ function progressTrack() {
         #17171a ${progressStart * degTravel}deg
         )`
 
-    audio.play()
     audio.loop = true
+    audio.play()
+    // console.log(audio.currentTime)
 
 
     if (progressStart == progressEnd) {
@@ -42,11 +49,18 @@ function progressTrack() {
         startstop.innerHTML = "START"
         progress = null
         progressStart = 0
+
         audio.pause()
+        audio.currentTime = 0
+        
+        timeEnd.play()
+        timeEnd.loop = true
+        setTimeout(StopTimeEndAudio, 8000)
+        timeEnd.currentTime = 0
     }
 
-
 }
+
 
 function startStopProgress() {
     if (!progress) {
@@ -69,7 +83,7 @@ function resetValues() {
     minutes = minEle.innerHTML
     seconds = secEle.innerHTML
     toggleSettings = false
-    minEle.contentEditable = false;
+    minEle.contentEditable = false
     minEle.style.borderBottom = `none`
     secEle.contentEditable = false
     secEle.style.borderBottom = `none`
@@ -120,6 +134,6 @@ secEle.onblur = function () {
 }
 
 // Theme change button
-document.querySelector('#nav_theme').addEventListener('click', function () {
-    document.body.classList.toggle("darkTheme")
-});
+document.querySelector('#nav_theme').addEventListener('click', () => {
+    document.body.classList.toggle('darkTheme')
+})
