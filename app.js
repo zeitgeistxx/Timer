@@ -152,6 +152,11 @@ document.querySelector('#nav_theme').addEventListener('click', () => {
 function keyCode(event){
     let key = event.keyCode;
 
-    if(key === 13)
+    if(key === 13){
         event.preventDefault();
+
+        minEle.blur();
+        secEle.blur();
+        startstop.click();
+    }
 }
