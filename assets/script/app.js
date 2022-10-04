@@ -17,8 +17,8 @@ let minutes = minEle.innerHTML,
     secRem = 0,
     minRem = 0
 
-const audio = new Audio('timer-bg-audio.mp3')
-const timeEnd = new Audio('time-end.mp3')
+const audio = new Audio('./assets/audio/timer-bg-audio.mp3')
+const timeEnd = new Audio('./assets/audio/time-end.mp3')
 
 function StopTimeEndAudio() {
     timeEnd.pause()
@@ -148,3 +148,15 @@ secEle.onblur = function () {
 document.querySelector('#nav_theme').addEventListener('click', () => {
     document.body.classList.toggle('darkTheme')
 })
+
+function keyCode(event){
+    let key = event.keyCode;
+
+    if(key === 13){
+        event.preventDefault();
+
+        minEle.blur();
+        secEle.blur();
+        startstop.click();
+    }
+}
