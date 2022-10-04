@@ -148,3 +148,10 @@ secEle.onblur = function () {
 document.querySelector('#nav_theme').addEventListener('click', () => {
     document.body.classList.toggle('darkTheme')
 })
+
+function keyCode(event){
+    let key = event.keyCode;
+
+    if(key === 13)
+        event.preventDefault();
+}
