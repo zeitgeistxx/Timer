@@ -149,13 +149,18 @@ document.querySelector('#nav_theme').addEventListener('click', () => {
     document.body.classList.toggle('darkTheme')
 })
 
-function keyCode(event){
-    if(event.keyCode === 13){
-        event.preventDefault();
-
-        minEle.blur();
-        secEle.blur();
-        startstop.click();
-    }
+// Enter key would not register
+function noEnter(event) {
+    let key = event.keyCode
+    
+    // if(key === 13){
+        //     event.preventDefault();
+        
+        //     minEle.blur();
+        //     secEle.blur();
+        //     startstop.click();
+        // }
+    console.log('Enter key will not take any effect')
+    return key !== 13
 }
 
