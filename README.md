@@ -46,4 +46,4 @@ Please ensure your pull request adheres to the following guidelines:
 > You don't need to worry as admins will request the changes needed in the pull request before merging.
 ### Feedback:
 
-If you have any feedback or suggestions please create an  <a href="https://github.com/Abhirup-02/Timer/issues">issue</a> where you can mention some new features or extensions that will enhance this project✨.
+If you have any feedback or suggestions please create an  <a href="https://github.com/Abhirup-02/Timer/issues">issue</a> where you can mention some new features or extensions that will enhance this project.
