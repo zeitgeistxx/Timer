@@ -44,12 +44,12 @@ function progressTrack() {
             #00aa51 360deg,
             #00aa51 360deg`
         clearInterval(progress)
-        startstop.innerHTML = "START"
-
+        
         audio.pause()
         audio.currentTime = 0
-
+        
         startstop.disabled = true
+        startstop.innerHTML = "START"
         setTimeout(() => startstop.disabled = false, 8500)
 
         timeEnd.play()
@@ -97,19 +97,27 @@ function resetValues() {
     progressBar.style.background = null
 }
 
-let pattern = /[0-9]/gi
+let pattern = /[0-9\s]{2}/
 startstop.addEventListener('click', () => {
-    if (startstop.innerHTML == "START") {
-        if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-            startstop.innerHTML = "STOP"
+    if (pattern.test(minEle.textContent) && pattern.test(secEle.textContent)) {
+        console.log('Pattern Matched')
+        timer.classList.remove('wrong-input-clr')
+        if (startstop.innerHTML == "START") {
+            if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+                startstop.textContent = "STOP"
+                startStopProgress()
+            } else {
+                alert("Please enter a time in Timer!")
+            }
+        }
+        else {
+            startstop.textContent = "START"
             startStopProgress()
-        } else {
-            alert("Please enter a time in Timer!")
         }
     }
     else {
-        startstop.innerHTML = "START"
-        startStopProgress()
+        console.log('Not Matched')
+        timer.classList.add('wrong-input-clr')
     }
 })
 
@@ -142,15 +150,9 @@ document.querySelector('#nav_theme').addEventListener('click', () => {
 // Enter key would not register
 function noEnter(event) {
     let key = event.keyCode
-        
-        //     minEle.blur()
-        //     secEle.blur()
-        //     startstop.click()
-    
     if (key === 13) {
         event.preventDefault()
         console.log('Enter key will not take any effect')
         return key !== 13
     }
 }
-
