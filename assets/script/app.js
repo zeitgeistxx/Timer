@@ -142,14 +142,11 @@ document.querySelector('#nav_theme').addEventListener('click', () => {
 // Enter key would not register
 function noEnter(event) {
     let key = event.keyCode
-    
-    // if(key === 13){
-        //     event.preventDefault();
         
-        //     minEle.blur();
-        //     secEle.blur();
-        //     startstop.click();
-        // }
+        //     minEle.blur()
+        //     secEle.blur()
+        //     startstop.click()
+    
     if (key === 13) {
         event.preventDefault()
         console.log('Enter key will not take any effect')
