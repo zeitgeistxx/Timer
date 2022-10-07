@@ -20,10 +20,6 @@ let minutes = minEle.innerHTML,
 const audio = new Audio('./assets/audio/timer-bg-audio.mp3')
 const timeEnd = new Audio('./assets/audio/time-end.mp3')
 
-function StopTimeEndAudio() {
-    timeEnd.pause()
-}
-
 function progressTrack() {
     progressStart++
 
@@ -53,12 +49,15 @@ function progressTrack() {
         audio.pause()
         audio.currentTime = 0
 
+        startstop.disabled = true
+        setTimeout(() => startstop.disabled = false, 8500)
+
         timeEnd.play()
         timeEnd.loop = true
-        setTimeout(StopTimeEndAudio, 8000)
+        setTimeout(() => timeEnd.pause(), 8000)
         timeEnd.currentTime = 0
 
-        setTimeout(resetValues, 9000)
+        setTimeout(resetValues, 8500)
     }
 }
 
@@ -103,24 +102,18 @@ function resetValues() {
 
 let pattern = /[0-9]/gi
 startstop.addEventListener('click', () => {
-    // if (pattern.test(minEle.innerHTML) && pattern.test(secEle.innerHTML)) {
-        // timer.style.background = null
-        if (startstop.innerHTML == "START") {
-            if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
-                startstop.innerHTML = "STOP"
-                startStopProgress()
-            } else {
-                alert("Please enter a time in Timer!")
-            }
-        }
-        else {
-            startstop.innerHTML = "START"
+    if (startstop.innerHTML == "START") {
+        if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
+            startstop.innerHTML = "STOP"
             startStopProgress()
+        } else {
+            alert("Please enter a time in Timer!")
         }
-    // }
-    // else {
-        // timer.style.background = '#ca3433'
-    // }
+    }
+    else {
+        startstop.innerHTML = "START"
+        startStopProgress()
+    }
 })
 
 setting.onclick = function () {
@@ -160,7 +153,10 @@ function noEnter(event) {
         //     secEle.blur();
         //     startstop.click();
         // }
-    console.log('Enter key will not take any effect')
-    return key !== 13
+    if (key === 13) {
+        event.preventDefault()
+        console.log('Enter key will not take any effect')
+        return key !== 13
+    }
 }
 
