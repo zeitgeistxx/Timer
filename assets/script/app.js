@@ -4,7 +4,7 @@ const minEle = document.querySelector('#minutes'),
     startstop = document.querySelector('#start_stop'),
     timer = document.querySelector('.timer'),
     progressBar = document.querySelector('.outer_ring'),
-    error_msg = document.querySelector('.error-msg')
+    error_msg = document.querySelector('p')
 
 let minutes = minEle.innerHTML,
     seconds = secEle.innerHTML,
@@ -97,10 +97,15 @@ function resetValues() {
     progressBar.style.background = null
 }
 
-let pattern = /[0-9\s]{2}/
+let pattern = /[0-9\s]{2}/  // pattern searches for match exactly two times including whitespace
 startstop.addEventListener('click', () => {
-    if (pattern.test(minEle.textContent) && pattern.test(secEle.textContent)) {
-        console.log('Pattern Matched')
+    let minElement = minEle.textContent.toString().length > 1 ? minEle.textContent : `0${minEle.textContent}`
+    let secElement = secEle.textContent.toString().length > 1 ? secEle.textContent : `0${secEle.textContent}`
+    // console.log(secElement)
+    if (pattern.test(minElement) && pattern.test(secElement))
+    {
+        // console.log('Pattern Matched')
+        error_msg.classList.remove('error-msg-show')
         timer.classList.remove('wrong-input-clr')
         if (startstop.innerHTML == "START") {
             if (!(parseInt(minutes) === 0 && parseInt(seconds) === 0)) {
@@ -110,13 +115,16 @@ startstop.addEventListener('click', () => {
                 alert("Please enter a time in Timer!")
             }
         }
-        else {
+        else
+        {
             startstop.textContent = "START"
             startStopProgress()
         }
     }
-    else {
-        console.log('Not Matched')
+    else
+    {
+        // console.log('Not Matched')
+        error_msg.classList.add('error-msg-show')
         timer.classList.add('wrong-input-clr')
     }
 })
