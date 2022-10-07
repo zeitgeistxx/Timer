@@ -94,10 +94,7 @@ function resetValues() {
     progressStart = 0
     progressEnd = parseInt(minutes) * 60 + parseInt(seconds)
     degTravel = 360 / progressEnd
-    progressBar.style.background = `conic-gradient(
-                #17171a 360deg,
-                #17171a 360deg
-          )`
+    progressBar.style.background = null
 }
 
 let pattern = /[0-9]/gi
