@@ -77,7 +77,7 @@ body {
 }
 
 .wrong-input-clr {
-    background: rgba(227, 55, 55, 0.787);
+    --timer-bg: rgba(227, 55, 55, 0.787);
 }
 
 #time {
