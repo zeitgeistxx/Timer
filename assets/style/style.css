@@ -132,6 +132,9 @@ body {
 #setting:hover:enabled {
     color: #00aa51;
 }
+#setting:hover:disabled{
+    cursor: wait;
+}
 
 .fa-gears {
     font-size: 18px;
