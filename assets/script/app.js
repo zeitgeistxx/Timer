@@ -11,7 +11,7 @@ let minutes = minEle.innerHTML,
     progress = null,
     progressStart = 0,
     progressEnd = parseInt(minutes) * 60 + parseInt(seconds),
-    speed = 1000,
+    speed = 1000, // Implies 1sec 
     degTravel = 360 / progressEnd,
     toggleSettings = false,
     secRem = 0,
@@ -27,7 +27,7 @@ function progressTrack() {
     minRem = Math.floor((progressEnd - progressStart) / 60)
 
     secEle.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
-    minEle.innerHTML = minRem.toString.length == 3 ? minRem : `0${minRem}`
+    minEle.innerHTML = minRem.toString().length >= 2 ? minRem : `0${minRem}`
 
     progressBar.style.background = `conic-gradient(
         #9d0000 ${progressStart * degTravel}deg,
