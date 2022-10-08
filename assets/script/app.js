@@ -6,11 +6,11 @@ const minEle = document.querySelector('#minutes'),
     progressBar = document.querySelector('.outer_ring'),
     error_msg = document.querySelector('p')
 
-let minutes = minEle.innerHTML,
-    seconds = secEle.innerHTML,
-    progress = null,
+// let minutes = minEle.innerHTML,
+//     seconds = secEle.innerHTML,
+let progress = null,
     progressStart = 0,
-    progressEnd = parseInt(minutes) * 60 + parseInt(seconds),
+    progressEnd = parseInt(minEle.textContent.replace(/\&nbsp;/,"")) * 60 + parseInt(minEle.textContent.replace(/\&nbsp;/,"")),
     speed = 1000, // Implies 1sec 
     degTravel = 360 / progressEnd,
     toggleSettings = false,
@@ -27,7 +27,7 @@ function progressTrack() {
     minRem = Math.floor((progressEnd - progressStart) / 60)
 
     secEle.innerHTML = secRem.toString().length == 2 ? secRem : `0${secRem}`
-    minEle.innerHTML = minRem.toString().length >= 2 ? minRem : `0${minRem}`
+    minEle.innerHTML = minRem.toString().length == 2 ? minRem : `0${minRem}`
 
     progressBar.style.background = `conic-gradient(
         #9d0000 ${progressStart * degTravel}deg,
@@ -65,6 +65,7 @@ function progressTrack() {
 function startStopProgress() {
     if (!progress) {
         progress = setInterval(progressTrack, speed)
+        console.log(progressEnd)
         setting.disabled = true
     } else {
         clearInterval(progress)
@@ -97,11 +98,14 @@ function resetValues() {
     progressBar.style.background = null
 }
 
-let pattern = /[0-9\s]{2}/  // pattern searches for match exactly two times including whitespace
+// pattern searches for match exactly two times including whitespace
+let pattern = /[0-9\s]{2}/  
+
 startstop.addEventListener('click', () => {
     let minElement = minEle.textContent.toString().length > 1 ? minEle.textContent : `0${minEle.textContent}`
     let secElement = secEle.textContent.toString().length > 1 ? secEle.textContent : `0${secEle.textContent}`
     // console.log(secElement)
+    console.log(secEle.innerHTML.replace(/\&nbsp;/,""))
     if (pattern.test(minElement) && pattern.test(secElement))
     {
         // console.log('Pattern Matched')
