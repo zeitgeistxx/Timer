@@ -27,7 +27,7 @@ If you're new to _git_ and/or _GitHub_, we suggest you go through [the GitHub Gu
    - Using GitHub CLI
 
      ```shell
-     gh repo clone gh repo clone Abhirup-02/Timer
+     gh repo clone Abhirup-02/Timer
      ```
 
 3. Create a new branch 
